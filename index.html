@@ -3,20 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Aputi Gym Tracker</title>
+
+<!-- Tarayıcı simgesi -->
+<link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+
+<!-- PWA manifest -->
 <link rel="manifest" href="manifest.json">
-<style>body{background:#000;color:#FFD700;font-family:sans-serif;} .slider{width:80%;}</style>
+
+<style>
+  body{background:#000;color:#FFD700;font-family:sans-serif;}
+  .slider{width:80%;}
+</style>
 </head>
 <body>
 <h1>💪 Aputi Gym Tracker</h1>
 <p>Gün: Pazartesi</p>
 <p>Omuz – Pazı</p>
+
 <label>Set 1: <input type="range" min="0" max="100" value="20" class="slider" id="s1"></label> 20kg<br>
 <label>Set 2: <input type="range" min="0" max="100" value="22" class="slider" id="s2"></label> 22kg<br>
 <label>Set 3: <input type="range" min="0" max="100" value="24" class="slider" id="s3"></label> 24kg<br>
+
 <button onclick="kaydet()">Kaydet</button> <button onclick="gecmisiGor()">Geçmişi Gör</button>
+
 <script>
 function kaydet(){alert("Kayıt edildi!");}
 function gecmisiGor(){alert("Geçmiş açılıyor...");}
+
+// Service Worker kaydı
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
 </script>
 </body>
 </html>
